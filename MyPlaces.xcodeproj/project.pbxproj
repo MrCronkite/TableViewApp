@@ -14,6 +14,8 @@
 		B2F37F9328808D0800B72650 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F37F9128808D0800B72650 /* LaunchScreen.storyboard */; };
 		B2F37F9F2880A10400B72650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F37F9E2880A10400B72650 /* Assets.xcassets */; };
 		B2F37FA32880A83300B72650 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F37FA22880A83300B72650 /* CustomTableViewCell.swift */; };
+		B2F37FA52881C95500B72650 /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F37FA42881C95500B72650 /* PlaceModel.swift */; };
+		B2F37FA72881E2BC00B72650 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F37FA62881E2BC00B72650 /* NewPlaceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		B2F37F9428808D0800B72650 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2F37F9E2880A10400B72650 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../SwiftApp/view_kit/view_kit/Assets.xcassets; sourceTree = "<group>"; };
 		B2F37FA22880A83300B72650 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		B2F37FA42881C95500B72650 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
+		B2F37FA62881E2BC00B72650 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +62,13 @@
 		B2F37F8528808D0600B72650 /* MyPlaces */ = {
 			isa = PBXGroup;
 			children = (
+				B2F37FA42881C95500B72650 /* PlaceModel.swift */,
 				B2F37F8628808D0600B72650 /* AppDelegate.swift */,
 				B2F37F8828808D0600B72650 /* SceneDelegate.swift */,
 				B2F37FA22880A83300B72650 /* CustomTableViewCell.swift */,
 				B2F37F8A28808D0600B72650 /* ViewController.swift */,
 				B2F37F8C28808D0600B72650 /* Main.storyboard */,
+				B2F37FA62881E2BC00B72650 /* NewPlaceViewController.swift */,
 				B2F37F9128808D0800B72650 /* LaunchScreen.storyboard */,
 				B2F37F9428808D0800B72650 /* Info.plist */,
 				B2F37F9E2880A10400B72650 /* Assets.xcassets */,
@@ -142,7 +148,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2F37F8B28808D0600B72650 /* ViewController.swift in Sources */,
+				B2F37FA72881E2BC00B72650 /* NewPlaceViewController.swift in Sources */,
 				B2F37F8728808D0600B72650 /* AppDelegate.swift in Sources */,
+				B2F37FA52881C95500B72650 /* PlaceModel.swift in Sources */,
 				B2F37FA32880A83300B72650 /* CustomTableViewCell.swift in Sources */,
 				B2F37F8928808D0600B72650 /* SceneDelegate.swift in Sources */,
 			);
