@@ -16,17 +16,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qc5-ba-R7j">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qc5-ba-R7j">
                                 <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="DMW-rN-CqZ" customClass="CustomTableViewCell" customModule="MyPlaces" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DMW-rN-CqZ" id="6vu-m6-SXl">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vOr-qj-P0z">
+                                                    <rect key="frame" x="15" y="10" width="65" height="65"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="65" id="qqf-ts-Zcd"/>
+                                                        <constraint firstAttribute="width" constant="65" id="ykj-eH-alS"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPd-KQ-YrI">
+                                                    <rect key="frame" x="95" y="9.0000000000000018" width="299" height="19.666666666666671"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="19.670000000000002" id="MXx-SY-VFT"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lacation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7A-q2-09s">
+                                                    <rect key="frame" x="95" y="32" width="315" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="XBe-aN-Rih"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLa-rQ-gLc">
+                                                    <rect key="frame" x="95" y="50" width="299" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="bO9-Zc-B5k"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="m7A-q2-09s" firstAttribute="top" secondItem="cPd-KQ-YrI" secondAttribute="bottom" constant="3.3300000000000001" id="0ob-Dd-QCQ"/>
+                                                <constraint firstItem="m7A-q2-09s" firstAttribute="trailing" secondItem="6vu-m6-SXl" secondAttribute="trailingMargin" constant="16" id="1sJ-34-sOM"/>
+                                                <constraint firstItem="iLa-rQ-gLc" firstAttribute="leading" secondItem="vOr-qj-P0z" secondAttribute="trailing" constant="15" id="Cr3-43-Z9R"/>
+                                                <constraint firstItem="vOr-qj-P0z" firstAttribute="leading" secondItem="6vu-m6-SXl" secondAttribute="leading" constant="15" id="EVD-CL-yle"/>
+                                                <constraint firstItem="m7A-q2-09s" firstAttribute="leading" secondItem="vOr-qj-P0z" secondAttribute="trailing" constant="15" id="Fkm-3q-HAH"/>
+                                                <constraint firstItem="iLa-rQ-gLc" firstAttribute="top" secondItem="m7A-q2-09s" secondAttribute="bottom" id="Jeb-iH-23s"/>
+                                                <constraint firstItem="cPd-KQ-YrI" firstAttribute="leading" secondItem="vOr-qj-P0z" secondAttribute="trailing" constant="15" id="P2w-Ju-p1q"/>
+                                                <constraint firstItem="vOr-qj-P0z" firstAttribute="centerY" secondItem="6vu-m6-SXl" secondAttribute="centerY" id="Wjj-Ql-v5D"/>
+                                                <constraint firstItem="iLa-rQ-gLc" firstAttribute="trailing" secondItem="6vu-m6-SXl" secondAttribute="trailingMargin" id="YQe-vI-plh"/>
+                                                <constraint firstItem="iLa-rQ-gLc" firstAttribute="bottom" secondItem="6vu-m6-SXl" secondAttribute="bottomMargin" id="ade-cg-hfi"/>
+                                                <constraint firstItem="cPd-KQ-YrI" firstAttribute="top" secondItem="6vu-m6-SXl" secondAttribute="top" constant="9" id="ujM-sL-jHM"/>
+                                                <constraint firstAttribute="trailing" secondItem="cPd-KQ-YrI" secondAttribute="trailing" constant="20" symbolic="YES" id="xLw-j9-0mb"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageOfPlace" destination="vOr-qj-P0z" id="FeZ-ob-O25"/>
+                                            <outlet property="locationLabel" destination="m7A-q2-09s" id="97y-RP-nFD"/>
+                                            <outlet property="nameLabel" destination="cPd-KQ-YrI" id="IlL-lB-0Yo"/>
+                                            <outlet property="typeLabel" destination="iLa-rQ-gLc" id="qnE-iq-xcY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
