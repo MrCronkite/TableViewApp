@@ -2,97 +2,102 @@
 //  NewPlaceViewController.swift
 //  MyPlaces
 //
-//  Created by admin1 on 15.07.22.
+//  Created by Alexey Efimov on 21/11/2018.
+//  Copyright © 2018 Alexey Efimov. All rights reserved.
 //
 
 import UIKit
 
-class NewPlaceViewController: UITableViewController, UINavigationControllerDelegate {
-    
-    
-    var newPlace: Place?
+class NewPlaceViewController: UITableViewController {
 
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    var newPlace: Place?
+    var imageIsChanged = false
     
-    @IBOutlet weak var imageOfPlace: UIImageView!
-    @IBOutlet weak var placeName: UITextField!
-    @IBOutlet weak var placeLocation: UITextField!
-    @IBOutlet weak var placeType: UITextField!
+    @IBOutlet var saveButton: UIBarButtonItem!
     
-    
-    
+    @IBOutlet var placeImage: UIImageView!
+    @IBOutlet var placeName: UITextField!
+    @IBOutlet var placeLocation: UITextField!
+    @IBOutlet var placeType: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView()
         
         saveButton.isEnabled = false
-        placeName.addTarget(self, action: #selector(textFieldChange), for: .editingChanged)
+        
+        placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     }
     
-    
-    //MARK: Table view delegate
+    // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-       
-        if indexPath.row == 0{
+        if indexPath.row == 0 {
+           
             let actionSheet = UIAlertController(title: nil,
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
             
-            let camera = UIAlertAction(title: "Camera", style: .default){ _ in
+            let camera = UIAlertAction(title: "Camera", style: .default) { _ in
                 self.chooseImagePicker(source: .camera)
             }
+            
+            
             
             let photo = UIAlertAction(title: "Photo", style: .default) { _ in
                 self.chooseImagePicker(source: .photoLibrary)
             }
             
+            
             let cancel = UIAlertAction(title: "Cancel", style: .cancel)
             
-            actionSheet.addAction(cancel)
             actionSheet.addAction(camera)
             actionSheet.addAction(photo)
+            actionSheet.addAction(cancel)
             
             present(actionSheet, animated: true)
-            
-        }else{
-            
-            //скрытие клавиатуры при нажатии на свободное место
+        } else {
             view.endEditing(true)
         }
     }
     
-    func saveNewPLace(){
+    func saveNewPlace() {
+        
+        var image: UIImage?
+        
+        if imageIsChanged {
+            image = placeImage.image
+        } else {
+            image = #imageLiteral(resourceName: "cell_img")
+        }
+        
         newPlace = Place(name: placeName.text!,
                          location: placeLocation.text,
                          type: placeType.text,
-                         image: imageOfPlace.image,
-                         placesImage: nil)
+                         image: image,
+                         restaurantImage: nil)
     }
-    
-    
-    
+
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true)
     }
     
 }
 
-//MARK: Text field delegate
-
+// MARK: Text field delegate
 extension NewPlaceViewController: UITextFieldDelegate {
     
-    //скрываем клавиатуру по нажатию на Готово
+    // Скрываем клавиатуру по нажатию на Done
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-        
     }
     
-    @objc private func textFieldChange(){
-        if placeName.text?.isEmpty == false{
+    @objc private func textFieldChanged() {
+        
+        if placeName.text?.isEmpty == false {
             saveButton.isEnabled = true
         } else {
             saveButton.isEnabled = false
@@ -100,27 +105,29 @@ extension NewPlaceViewController: UITextFieldDelegate {
     }
 }
 
-
-//MARK: WORK with image
-extension NewPlaceViewController: UIImagePickerControllerDelegate{
+//MARK: Work with image
+extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    //добавление фото
-    func chooseImagePicker(source: UIImagePickerController.SourceType){
-        if UIImagePickerController.isSourceTypeAvailable(source){
+    func chooseImagePicker(source: UIImagePickerController.SourceType) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.allowsEditing = true
             imagePicker.sourceType = source
-            present(imagePicker, animated: true, completion: nil)
+            present(imagePicker, animated: true)
         }
     }
     
-    //привязка выбранного фото
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        imageOfPlace.image = info[.editedImage] as? UIImage
-        imageOfPlace.contentMode = .scaleAspectFill
-        imageOfPlace.clipsToBounds = true
+        
+        placeImage.image = info[.editedImage] as? UIImage
+        placeImage.contentMode = .scaleAspectFill
+        placeImage.clipsToBounds = true
+        
+        imageIsChanged = true
+        
         dismiss(animated: true)
     }
 }

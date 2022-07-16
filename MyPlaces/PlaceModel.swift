@@ -2,30 +2,33 @@
 //  PlaceModel.swift
 //  MyPlaces
 //
-//  Created by admin1 on 15.07.22.
+//  Created by Alexey Efimov on 15/11/2018.
+//  Copyright © 2018 Alexey Efimov. All rights reserved.
 //
-
 
 import UIKit
 
-
-struct Place{
-    var name: String?
+struct Place {
+    
+    var name: String
     var location: String?
     var type: String?
     var image: UIImage?
-    var placesImage: String?
+    var restaurantImage: String?
     
-    static let placesRest = ["ШОК","Классик", "Балкан Гриль", "Токини", "Спички", "Васельки","Мир" ,"ЛидБир"]
+    static let restaurantNames = [
+        "Burger Heroes", "Kitchen", "Bonsai", "Дастархан",
+        "Классик", "Love&Life", "Шок", "Бочка"
+    ]
     
-    static func getPlaces() ->[Place]{
+    static func getPlaces() -> [Place] {
+        
         var places = [Place]()
         
-        for place in placesRest{
-            places.append(Place(name: place, location: "Minsk", type: "Restoran", image: nil, placesImage: "cell_img"))
+        for place in restaurantNames {
+            places.append(Place(name: place, location: "Уфа", type: "Ресторан", image: nil, restaurantImage: "cell_img"))
         }
         
         return places
     }
-    
 }
