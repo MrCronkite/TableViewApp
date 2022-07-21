@@ -28,9 +28,7 @@ class NewPlaceViewController: UITableViewController {
         }
         
         tableView.tableFooterView = UIView()
-        
         saveButton.isEnabled = false
-        
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     }
     

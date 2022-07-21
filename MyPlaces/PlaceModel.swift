@@ -21,10 +21,9 @@ class Place: Object{
     ]
     
     func savePlaces() {
-        
 
         for place in restaurantNames {
-           let image = UIImage(named: "cel_img")
+           let image = UIImage(named: "cell_img")
             guard let imageData = image?.pngData() else {return}
            
             
@@ -34,6 +33,8 @@ class Place: Object{
             newPlace.location = "Ufa"
             newPlace.type = "Resturant"
             newPlace.imageData = imageData
+            
+            StorageManager.saveObject(newPlace)
         }
 
     }
