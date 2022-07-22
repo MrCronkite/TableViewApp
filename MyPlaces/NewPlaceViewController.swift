@@ -4,7 +4,7 @@ import UIKit
 
 class NewPlaceViewController: UITableViewController {
 
-    
+    var currentPlace: Place?
     var imageIsChanged = false
     
     @IBOutlet var saveButton: UIBarButtonItem!
@@ -20,7 +20,11 @@ class NewPlaceViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         saveButton.isEnabled = false
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        setupEditScreen()
     }
+    
+    
+    
     
     // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -54,7 +58,7 @@ class NewPlaceViewController: UITableViewController {
         }
     }
     
-    func saveNewPlace() {
+    func savePlace() {
         
         var image: UIImage?
         
@@ -71,8 +75,44 @@ class NewPlaceViewController: UITableViewController {
                              type: placeType.text,
                              imageData: imageData)
         
-        StorageManager.saveObject(newPlace)
+        if currentPlace != nil{
+            try! realm.write{
+                currentPlace?.name = newPlace.name
+                currentPlace?.location = newPlace.location
+                currentPlace?.type = newPlace.type
+                currentPlace?.imageData = newPlace.imageData
+            }
+        }else{
+            StorageManager.saveObject(newPlace)
+        }
+        
+        
     }
+    
+    private func setupEditScreen(){
+        if currentPlace != nil{
+            setupNavigationBar()
+            imageIsChanged = true
+            
+            guard let data = currentPlace?.imageData, let image = UIImage(data: data) else {return}
+            
+            placeImage.image = image
+            placeImage.contentMode = .scaleAspectFill
+            placeName.text = currentPlace?.name
+            placeLocation.text = currentPlace?.location
+            placeType.text = currentPlace?.type
+        }
+    }
+    
+    private func setupNavigationBar(){
+        if let topItem = navigationController?.navigationBar.topItem{
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        navigationItem.leftBarButtonItem = nil
+        title = currentPlace?.name
+        saveButton.isEnabled = true
+    }
+    
 
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true)
@@ -83,8 +123,8 @@ class NewPlaceViewController: UITableViewController {
 // MARK: Text field delegate
 extension NewPlaceViewController: UITextFieldDelegate {
     
-    // Скрываем клавиатуру по нажатию на Done
     
+    // Скрываем клавиатуру по нажатию на Done
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
