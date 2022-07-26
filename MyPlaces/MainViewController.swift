@@ -7,8 +7,14 @@ import UIKit
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var places: Results<Place>!
-
+    var ascendingSorting = true
+    
+    @IBOutlet weak var reversedSortingButton: UIBarButtonItem!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,4 +77,31 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.reloadData()
     }
 
+    @IBAction func sortSelection(_ sender: UISegmentedControl) {
+        sorting()
+        
+    }
+    @IBAction func reversedSorting(_ sender: Any) {
+        ascendingSorting.toggle()
+        
+        if ascendingSorting {
+            //#imageLiteral()
+            reversedSortingButton.image = #imageLiteral(resourceName: "AZ")
+        }else {
+            reversedSortingButton.image = #imageLiteral(resourceName: "ZA")
+        }
+        
+        sorting()
+    }
+    
+    private func sorting() {
+        if segmentedControl.selectedSegmentIndex == 0{
+            places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
+        }else {
+            places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+        }
+        
+        tableView.reloadData()
+    }
+    
 }
