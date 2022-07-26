@@ -10,10 +10,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let schemaVersion: UInt64 = 2
+        
         let config = Realm.Configuration(
-            schemaVersion: 1,
+            schemaVersion: schemaVersion,
             migrationBlock: { migration, oldSchemaVersion in
-                if oldSchemaVersion < 1 {
+                if oldSchemaVersion < schemaVersion {
                     // Rename the "age" property to "yearsSinceBirth".
                     // The renaming operation should be done outside of calls to `enumerateObjects(ofType: _:)`.
                    // migration.renameProperty(onType: Person.className(), from: "age", to: "yearsSinceBirth")
