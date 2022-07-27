@@ -62,6 +62,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace.clipsToBounds = true
+        cell.cosmosView.rating = place.rating
 
         return cell
     }
