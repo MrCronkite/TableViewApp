@@ -50,6 +50,12 @@
             ReferencedContainer = "container:MyPlaces.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "OS_A&#x421;TIVITY_MODE"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "OS_A&#x421;TIVITY_MODE"
