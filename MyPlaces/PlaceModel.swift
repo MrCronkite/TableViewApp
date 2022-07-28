@@ -1,8 +1,14 @@
-
+//
+//  PlaceModel.swift
+//  MyPlaces
+//
+//  Created by Alexey Efimov on 15/11/2018.
+//  Copyright © 2018 Alexey Efimov. All rights reserved.
+//
 
 import RealmSwift
 
-class Place: Object{
+class Place: Object {
     
     @objc dynamic var name = ""
     @objc dynamic var location: String?
@@ -11,7 +17,7 @@ class Place: Object{
     @objc dynamic var date = Date()
     @objc dynamic var rating = 0.0
     
-    convenience init(name: String, location: String?, type: String?, imageData: Data?, rating: Double){
+    convenience init(name: String, location: String?, type: String?, imageData: Data?, rating: Double) {
         self.init()
         self.name = name
         self.location = location

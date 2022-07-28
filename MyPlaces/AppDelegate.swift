@@ -1,6 +1,13 @@
+//
+//  AppDelegate.swift
+//  MyPlaces
+//
+//  Created by Alexey Efimov on 07/11/2018.
+//  Copyright © 2018 Alexey Efimov. All rights reserved.
+//
 
-import RealmSwift
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,21 +20,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let schemaVersion: UInt64 = 2
         
         let config = Realm.Configuration(
+            // Set the new schema version. This must be greater than the previously used
+            // version (if you've never set a schema version before, the version is 0).
             schemaVersion: schemaVersion,
+            
+            // Set the block which will be called automatically when opening a Realm with
+            // a schema version lower than the one set above
             migrationBlock: { migration, oldSchemaVersion in
-                if oldSchemaVersion < schemaVersion {
-                    // Rename the "age" property to "yearsSinceBirth".
-                    // The renaming operation should be done outside of calls to `enumerateObjects(ofType: _:)`.
-                   // migration.renameProperty(onType: Person.className(), from: "age", to: "yearsSinceBirth")
+                // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                if (oldSchemaVersion < schemaVersion) {
+                    // Nothing to do!
+                    // Realm will automatically detect new properties and removed properties
+                    // And will update the schema on disk automatically
                 }
-            })
+        })
+        
+        // Tell Realm to use this new configuration object for the default Realm
         Realm.Configuration.defaultConfiguration = config
         
         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        //ng tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {

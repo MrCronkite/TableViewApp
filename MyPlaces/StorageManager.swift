@@ -2,23 +2,26 @@
 //  StorageManager.swift
 //  MyPlaces
 //
-//  Created by admin1 on 21.07.22.
+//  Created by Alexey admin1 on 25/07/2022.
+//  Copyright © 2018 Alexey Efimov. All rights reserved.
 //
 
 import RealmSwift
 
-let realm  = try! Realm()
+let realm = try! Realm()
 
 class StorageManager {
-    static func saveObject(_ place: Place){
-        try! realm.write{
+    
+    static func saveObject(_ place: Place) {
+        
+        try! realm.write {
             realm.add(place)
         }
     }
     
-    //удаление из базы
-    static func deleteObject(_ place: Place){
-        try! realm.write{
+    static func deleteObject(_ place: Place) {
+        
+        try! realm.write {
             realm.delete(place)
         }
     }

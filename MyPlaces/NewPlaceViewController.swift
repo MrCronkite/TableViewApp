@@ -1,9 +1,15 @@
-
+//
+//  NewPlaceViewController.swift
+//  MyPlaces
+//
+//  Created by admin1 on 25/07/2022.
+//  Copyright © 2018 Alexey Efimov. All rights reserved.
+//
 
 import UIKit
 
 class NewPlaceViewController: UITableViewController {
-
+    
     var currentPlace: Place!
     var imageIsChanged = false
     
@@ -13,25 +19,28 @@ class NewPlaceViewController: UITableViewController {
     @IBOutlet var placeName: UITextField!
     @IBOutlet var placeLocation: UITextField!
     @IBOutlet var placeType: UITextField!
-    @IBOutlet weak var ratingControl: RatingControl!
-    
+    @IBOutlet var ratingControl: RatingControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0,
+                                                         y: 0,
+                                                         width: tableView.frame.size.width,
+                                                         height: 1))
         saveButton.isEnabled = false
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         setupEditScreen()
     }
     
-    
-    
-    
     // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
-           
+            
+            let cameraIcon = #imageLiteral(resourceName: "camera")
+            let photoIcon = #imageLiteral(resourceName: "photo")
+            
             let actionSheet = UIAlertController(title: nil,
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
@@ -40,12 +49,15 @@ class NewPlaceViewController: UITableViewController {
                 self.chooseImagePicker(source: .camera)
             }
             
-            
+            camera.setValue(cameraIcon, forKey: "image")
+            camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
             
             let photo = UIAlertAction(title: "Photo", style: .default) { _ in
                 self.chooseImagePicker(source: .photoLibrary)
             }
             
+            photo.setValue(photoIcon, forKey: "image")
+            photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
             
             let cancel = UIAlertAction(title: "Cancel", style: .cancel)
             
@@ -59,64 +71,57 @@ class NewPlaceViewController: UITableViewController {
         }
     }
     
-    //MARK: Navigation
+    // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard
             let identifier = segue.identifier,
             let mapVC = segue.destination as? MapViewController
-            else {return}
+            else { return }
         
-        mapVC.incomeSegueIndentifier = identifier
+        mapVC.incomeSegueIdentifier = identifier
         mapVC.mapViewControllerDelegate = self
         
-        if identifier == "showPlace"{
+        if identifier == "showPlace" {
             mapVC.place.name = placeName.text!
             mapVC.place.location = placeLocation.text
             mapVC.place.type = placeType.text
             mapVC.place.imageData = placeImage.image?.pngData()
         }
-    
-       
     }
-    
-    
-    
     
     func savePlace() {
         
-        let image = imageIsChanged ? placeImage.image : #imageLiteral(resourceName: "cell_img")
-        
+        let image = imageIsChanged ? placeImage.image : #imageLiteral(resourceName: "imagePlaceholder")
         let imageData = image?.pngData()
-    
+        
         let newPlace = Place(name: placeName.text!,
                              location: placeLocation.text,
                              type: placeType.text,
                              imageData: imageData,
                              rating: Double(ratingControl.rating))
         
-        if currentPlace != nil{
-            try! realm.write{
+        if currentPlace != nil {
+            try! realm.write {
                 currentPlace?.name = newPlace.name
                 currentPlace?.location = newPlace.location
                 currentPlace?.type = newPlace.type
                 currentPlace?.imageData = newPlace.imageData
                 currentPlace?.rating = newPlace.rating
             }
-        }else{
+        } else {
             StorageManager.saveObject(newPlace)
         }
-        
-        
     }
     
-    private func setupEditScreen(){
-        if currentPlace != nil{
+    private func setupEditScreen() {
+        if currentPlace != nil {
+            
             setupNavigationBar()
             imageIsChanged = true
             
-            guard let data = currentPlace?.imageData, let image = UIImage(data: data) else {return}
+            guard let data = currentPlace?.imageData, let image = UIImage(data: data) else { return }
             
             placeImage.image = image
             placeImage.contentMode = .scaleAspectFill
@@ -127,15 +132,14 @@ class NewPlaceViewController: UITableViewController {
         }
     }
     
-    private func setupNavigationBar(){
-        if let topItem = navigationController?.navigationBar.topItem{
+    private func setupNavigationBar() {
+        if let topItem = navigationController?.navigationBar.topItem {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
         navigationItem.leftBarButtonItem = nil
         title = currentPlace?.name
         saveButton.isEnabled = true
     }
-    
 
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true)
@@ -146,8 +150,8 @@ class NewPlaceViewController: UITableViewController {
 // MARK: Text field delegate
 extension NewPlaceViewController: UITextFieldDelegate {
     
-    
     // Скрываем клавиатуру по нажатию на Done
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -190,8 +194,8 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
     }
 }
 
-
-extension NewPlaceViewController: MapViewControllerDelegate{
+extension NewPlaceViewController: MapViewControllerDelegate {
+    
     func getAddress(_ address: String?) {
         placeLocation.text = address
     }
