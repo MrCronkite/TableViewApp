@@ -2,7 +2,7 @@
 //  MapViewController.swift
 //  MyPlaces
 //
-//  Created by Alexey Efimov on 12/02/2019.
+//  Created by VladShimchenko on 25/07/2022.
 //  Copyright © 2019 Alexey Efimov. All rights reserved.
 //
 

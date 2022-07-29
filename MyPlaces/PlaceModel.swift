@@ -2,7 +2,7 @@
 //  PlaceModel.swift
 //  MyPlaces
 //
-//  Created by Alexey Efimov on 15/11/2018.
+//  Created by VladShimchenko on 25/07/2022.
 //  Copyright © 2018 Alexey Efimov. All rights reserved.
 //
 
