@@ -6,5 +6,4 @@
 ### Video guide 
 
 
-https://user-images.githubusercontent.com/25368260/181836289-55f44b91-f723-4a13-849d-3eadca75e1d0.mov
-
+<img width="26" alt="Снимок экрана 2022-07-29 в 23 35 16" src="https://user-images.githubusercontent.com/25368260/181839403-40e306b9-a672-4851-bdd4-5634ec85e691.png"> меняет порядок сортировки 
