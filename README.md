@@ -3,3 +3,6 @@
 # Places
 
 
+### Video guide 
+
+
