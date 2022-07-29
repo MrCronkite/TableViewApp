@@ -1,4 +1,4 @@
-[![Kottans-Swift][icon-kottans]
+[![Kottans-Swift][icon-kottans]]
 
 # Places
 
