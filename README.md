@@ -2,9 +2,6 @@
 
 # Places
 
-
-
-
 This app helps you to save your favorite places using the map.
 The app was developed using the "UiKit" library based on "UITableView". In this application, you can delete elements, 
 create, modify, sort, do a table search. Alsо, when creating an element, you can find the address of the place using the 
@@ -21,5 +18,13 @@ the map from your position to the desired location.
 - Basic concepts of the Swift language
 - UiKit/ UITableView/ Custom Element
 - MapKit
-- Realm/ RealmSwift/ RealmStudio
+- Realm/ RealmSwift/ RealmStudio 
 - Storyboards
+- CosmoStar
+
+
+### How to start 
+
+1. gh repo clone MrCronkite/TableViewApp
+1. Pods install (IOS 15.2)
+
