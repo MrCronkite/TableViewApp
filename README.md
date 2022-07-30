@@ -26,6 +26,6 @@ the map from your position to the desired location.
 ### How to start 
 
 ```
-1. gh repo clone MrCronkite/TableViewApp
-1. Pods install (IOS 15.2)
+ gh repo clone MrCronkite/TableViewApp
+ Pods install (IOS 15.2)
 ```

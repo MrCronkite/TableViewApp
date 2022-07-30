@@ -243,6 +243,7 @@
                                 <state key="normal" image="arrow.uturn.backward" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40"/>
                                 </state>
                                 <connections>
                                     <action selector="closeVC" destination="WN9-SV-9wF" eventType="touchUpInside" id="RmY-8Y-1KK"/>
@@ -278,7 +279,9 @@
                                     <constraint firstAttribute="width" constant="30" id="Mtq-JV-TIZ"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="person.fill" catalog="system"/>
+                                <state key="normal" image="person.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40"/>
+                                </state>
                                 <connections>
                                     <action selector="centerViewInUserLocation" destination="WN9-SV-9wF" eventType="touchUpInside" id="zaO-Tm-D4S"/>
                                 </connections>
