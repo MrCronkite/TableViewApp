@@ -7,7 +7,7 @@ The app was developed using the "UiKit" library based on "UITableView". In this 
 create, modify, sort, do a table search. Alsо, when creating an element, you can find the address of the place using the 
 built-in maps, this functionality was developed using the "MapKit" library. And there is a possibility to pave the way on 
 the map from your position to the desired location.
-- this project was created for educational purposes
+###### this project was created for educational purposes
 
 
 ![main](https://user-images.githubusercontent.com/25368260/181844401-7abbed7d-87a7-47cf-b1b3-2dc7470a4666.png)
@@ -25,6 +25,7 @@ the map from your position to the desired location.
 
 ### How to start 
 
+```
 1. gh repo clone MrCronkite/TableViewApp
 1. Pods install (IOS 15.2)
-
+```
