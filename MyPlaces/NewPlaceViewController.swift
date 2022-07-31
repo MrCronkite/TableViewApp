@@ -23,6 +23,7 @@ class NewPlaceViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         tableView.tableFooterView = UIView(frame: CGRect(x: 0,
                                                          y: 0,

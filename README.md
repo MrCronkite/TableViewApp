@@ -21,6 +21,7 @@ the map from your position to the desired location.
 - Realm/ RealmSwift/ RealmStudio 
 - Storyboards
 - CosmoStar
+- Fixing Memory Leaks 
 
 
 ### How to start 
